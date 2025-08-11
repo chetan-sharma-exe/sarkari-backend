@@ -1,4 +1,4 @@
-module prem
+module github.com/chetan-sharma-exe/sarkari-backend
 
 go 1.24.2
 

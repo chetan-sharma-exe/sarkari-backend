@@ -2,9 +2,9 @@ package handlers
 
 import (
 	"database/sql"
+	m "github.com/chetan-sharma-exe/sarkari-backend/internal/models"
+	"github.com/chetan-sharma-exe/sarkari-backend/internal/repositories"
 	"net/http"
-	m "prem/internal/models"
-	"prem/internal/repositories"
 
 	"github.com/gin-gonic/gin"
 )

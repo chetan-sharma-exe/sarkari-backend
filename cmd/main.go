@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/chetan-sharma-exe/sarkari-backend/internal/config"
+	"github.com/chetan-sharma-exe/sarkari-backend/internal/db"
+	"github.com/chetan-sharma-exe/sarkari-backend/internal/routes"
 	"log"
-	"prem/internal/config"
-	"prem/internal/db"
-	"prem/internal/routes"
 
 	"github.com/gin-gonic/gin"
 )

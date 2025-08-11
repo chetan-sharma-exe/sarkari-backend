@@ -2,7 +2,7 @@ package routes
 
 import (
 	"database/sql"
-	"prem/internal/handlers"
+	"github.com/chetan-sharma-exe/sarkari-backend/internal/handlers"
 
 	"github.com/gin-gonic/gin"
 )

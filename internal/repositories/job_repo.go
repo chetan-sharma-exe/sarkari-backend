@@ -2,7 +2,7 @@ package repositories
 
 import (
 	"database/sql"
-	m "prem/internal/models"
+	m "github.com/chetan-sharma-exe/sarkari-backend/internal/models"
 )
 
 // CREATE
