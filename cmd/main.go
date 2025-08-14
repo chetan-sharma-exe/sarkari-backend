@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"time"
+
 	"github.com/chetan-sharma-exe/sarkari-backend/internal/config"
 	"github.com/chetan-sharma-exe/sarkari-backend/internal/db"
 	"github.com/chetan-sharma-exe/sarkari-backend/internal/routes"
-	"log"
+	"github.com/gin-contrib/cors"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,6 +17,17 @@ func main() {
 	conn := config.LoadConfig()
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
+
+	 // Allow all origins
+	r.Use(cors.New(cors.Config{
+	AllowAllOrigins:  true,
+	AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+	AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
+	ExposeHeaders:    []string{"Content-Length"},
+	AllowCredentials: true,
+	MaxAge:           12 * time.Hour,
+	}))
+
 	db, err := db.ConnectDatabase(conn.DBUrl)
 	if err != nil {
 		log.Fatalf("DB connection failed: %v", err)
