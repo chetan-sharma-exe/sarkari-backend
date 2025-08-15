@@ -4,7 +4,7 @@ type Job struct {
 	ID          int     `db:"id" json:"id"`
 	Title       string  `db:"title" json:"title"`
 	Description string  `db:"description" json:"description"`
-	ApplyURL    string  `db:"apply_url" json:"apply_url"`
+	Url         string  `db:"url" json:"url"`
 	LastDate    *string `db:"last_date" json:"last_date,omitempty"`
 	DatePosted  string  `db:"date_posted" json:"date_posted"`
 }
@@ -12,29 +12,29 @@ type Job struct {
 type Result struct {
 	ID         int     `db:"id" json:"id"`
 	Title      string  `db:"title" json:"title"`
-	ResultLink string  `db:"result_link" json:"result_link"`
+	Url        string  `db:"url" json:"url"`
 	ExamDate   *string `db:"exam_date" json:"exam_date,omitempty"`
 	DatePosted string  `db:"date_posted" json:"date_posted"`
 }
 
 type AdmitCard struct {
-	ID           int     `db:"id" json:"id"`
-	Title        string  `db:"title" json:"title"`
-	DownloadLink string  `db:"download_link" json:"download_link"`
-	ExamDate     *string `db:"exam_date" json:"exam_date,omitempty"`
-	DatePosted   string  `db:"date_posted" json:"date_posted"`
+	ID         int     `db:"id" json:"id"`
+	Title      string  `db:"title" json:"title"`
+	Url        string  `db:"url" json:"url"`
+	ExamDate   *string `db:"exam_date" json:"exam_date,omitempty"`
+	DatePosted string  `db:"date_posted" json:"date_posted"`
 }
 
 type VImpLink struct {
 	ID    int    `db:"id" json:"id"`
 	Title string `db:"title" json:"title"`
-	Link  string `db:"link" json:"link"`
+	Url   string `db:"url" json:"url"`
 }
 
 type ImpLink struct {
 	ID    int    `db:"id" json:"id"`
 	Title string `db:"title" json:"title"`
-	Link  string `db:"link" json:"link"`
+	Url   string `db:"url" json:"url"`
 }
 
 type AllData struct {

@@ -26,7 +26,7 @@ func (r *Repository) GetJobs() []models.Job {
 	var jobs []models.Job
 	for rows.Next() {
 		var j models.Job
-		rows.Scan(&j.ID, &j.Title, &j.Description, &j.ApplyURL, &j.LastDate, &j.DatePosted)
+		rows.Scan(&j.ID, &j.Title, &j.Description, &j.Url, &j.LastDate, &j.DatePosted)
 		jobs = append(jobs, j)
 	}
 	return jobs
@@ -43,7 +43,7 @@ func (r *Repository) GetResults() []models.Result {
 	var results []models.Result
 	for rows.Next() {
 		var res models.Result
-		rows.Scan(&res.ID, &res.Title, &res.ResultLink, &res.ExamDate, &res.DatePosted)
+		rows.Scan(&res.ID, &res.Title, &res.Url, &res.ExamDate, &res.DatePosted)
 		results = append(results, res)
 	}
 	return results
@@ -60,7 +60,7 @@ func (r *Repository) GetAdmitCards() []models.AdmitCard {
 	var admitCards []models.AdmitCard
 	for rows.Next() {
 		var a models.AdmitCard
-		rows.Scan(&a.ID, &a.Title, &a.DownloadLink, &a.ExamDate, &a.DatePosted)
+		rows.Scan(&a.ID, &a.Title, &a.Url, &a.ExamDate, &a.DatePosted)
 		admitCards = append(admitCards, a)
 	}
 	return admitCards
@@ -77,7 +77,7 @@ func (r *Repository) GetVImpLinks() []models.VImpLink {
 	var links []models.VImpLink
 	for rows.Next() {
 		var v models.VImpLink
-		rows.Scan(&v.ID, &v.Title, &v.Link)
+		rows.Scan(&v.ID, &v.Title, &v.Url)
 		links = append(links, v)
 	}
 	return links
@@ -94,7 +94,7 @@ func (r *Repository) GetImpLinks() []models.ImpLink {
 	var links []models.ImpLink
 	for rows.Next() {
 		var i models.ImpLink
-		rows.Scan(&i.ID, &i.Title, &i.Link)
+		rows.Scan(&i.ID, &i.Title, &i.Url)
 		links = append(links, i)
 	}
 	return links
@@ -114,7 +114,7 @@ func (r *Repository) InsertJob(job models.Job) error {
 	_, err := r.DB.Exec(`
 		INSERT INTO jobs (title, description, apply_url, last_date) 
 		VALUES ($1, $2, $3, $4)`,
-		job.Title, job.Description, job.ApplyURL, job.LastDate,
+		job.Title, job.Description, job.Url, job.LastDate,
 	)
 	return err
 }
@@ -123,7 +123,7 @@ func (r *Repository) InsertResult(res models.Result) error {
 	_, err := r.DB.Exec(`
 		INSERT INTO results (title, result_link, exam_date) 
 		VALUES ($1, $2, $3)`,
-		res.Title, res.ResultLink, res.ExamDate,
+		res.Title, res.Url, res.ExamDate,
 	)
 	return err
 }
@@ -132,7 +132,7 @@ func (r *Repository) InsertAdmitCard(admit models.AdmitCard) error {
 	_, err := r.DB.Exec(`
 		INSERT INTO admit_cards (title, download_link, exam_date) 
 		VALUES ($1, $2, $3)`,
-		admit.Title, admit.DownloadLink, admit.ExamDate,
+		admit.Title, admit.Url, admit.ExamDate,
 	)
 	return err
 }
@@ -141,7 +141,7 @@ func (r *Repository) InsertVimpLink(link models.VImpLink) error {
 	_, err := r.DB.Exec(`
 		INSERT INTO vimps_links (title, link) 
 		VALUES ($1, $2)`,
-		link.Title, link.Link,
+		link.Title, link.Url,
 	)
 	return err
 }
@@ -150,7 +150,7 @@ func (r *Repository) InsertImpLink(link models.ImpLink) error {
 	_, err := r.DB.Exec(`
 		INSERT INTO imp_links (title, link) 
 		VALUES ($1, $2)`,
-		link.Title, link.Link,
+		link.Title, link.Url,
 	)
 	return err
 }
@@ -173,7 +173,7 @@ func (r *Repository) InsertAllData(data models.AllData) error {
 		_, err := tx.Exec(`
 			INSERT INTO jobs (title, description, apply_url, last_date) 
 			VALUES ($1, $2, $3, $4)`,
-			job.Title, job.Description, job.ApplyURL, job.LastDate,
+			job.Title, job.Description, job.Url, job.LastDate,
 		)
 		if err != nil {
 			return err
@@ -185,7 +185,7 @@ func (r *Repository) InsertAllData(data models.AllData) error {
 		_, err := tx.Exec(`
 			INSERT INTO results (title, result_link, exam_date) 
 			VALUES ($1, $2, $3)`,
-			res.Title, res.ResultLink, res.ExamDate,
+			res.Title, res.Url, res.ExamDate,
 		)
 		if err != nil {
 			return err
@@ -197,7 +197,7 @@ func (r *Repository) InsertAllData(data models.AllData) error {
 		_, err := tx.Exec(`
 			INSERT INTO admit_cards (title, download_link, exam_date) 
 			VALUES ($1, $2, $3)`,
-			admit.Title, admit.DownloadLink, admit.ExamDate,
+			admit.Title, admit.Url, admit.ExamDate,
 		)
 		if err != nil {
 			return err
@@ -209,7 +209,7 @@ func (r *Repository) InsertAllData(data models.AllData) error {
 		_, err := tx.Exec(`
 			INSERT INTO vimps_links (title, link) 
 			VALUES ($1, $2)`,
-			vlink.Title, vlink.Link,
+			vlink.Title, vlink.Url,
 		)
 		if err != nil {
 			return err
@@ -221,7 +221,7 @@ func (r *Repository) InsertAllData(data models.AllData) error {
 		_, err := tx.Exec(`
 			INSERT INTO imp_links (title, link) 
 			VALUES ($1, $2)`,
-			ilink.Title, ilink.Link,
+			ilink.Title, ilink.Url,
 		)
 		if err != nil {
 			return err
@@ -230,4 +230,3 @@ func (r *Repository) InsertAllData(data models.AllData) error {
 
 	return tx.Commit()
 }
-
