@@ -7,7 +7,8 @@ import (
 
 	"github.com/chetan-sharma-exe/sarkari-backend/internal/config"
 	"github.com/chetan-sharma-exe/sarkari-backend/internal/db"
-	"github.com/chetan-sharma-exe/sarkari-backend/internal/routes"
+	"github.com/chetan-sharma-exe/sarkari-backend/internal/handlers"
+	repository "github.com/chetan-sharma-exe/sarkari-backend/internal/repositories"
 	"github.com/gin-contrib/cors"
 
 	"github.com/gin-gonic/gin"
@@ -33,7 +34,12 @@ func main() {
 		log.Fatalf("DB connection failed: %v", err)
 	}
 	defer db.Close()
-	routes.RegisterRoutes(r, db)
+
+	repo := repository.NewRepository(db)
+	h := handlers.NewHandler(repo)
+
+	r.GET("/getAllData", h.GetAll)
+	r.POST("/postAllData", h.PostAll)
 
 	if conn.Port == "" {
 		conn.Port = "8080"
