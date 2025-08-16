@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS jobs (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT,
-    apply_url TEXT,
+    url TEXT,
     last_date DATE,
     date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS jobs (
 CREATE TABLE IF NOT EXISTS results (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    result_link TEXT,
+    url TEXT,
     exam_date DATE,
     date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS results (
 CREATE TABLE IF NOT EXISTS admit_cards (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    download_link TEXT,
+    url TEXT,
     exam_date DATE,
     date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -27,11 +27,68 @@ CREATE TABLE IF NOT EXISTS admit_cards (
 CREATE TABLE IF NOT EXISTS vimps_links (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    link TEXT NOT NULL
+    url TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS imp_links (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    link TEXT NOT NULL
+    url TEXT NOT NULL
 );
+
+
+CREATE TABLE IF NOT EXISTS naukri_forms (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    url TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS admissions (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    url TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS regular_forms (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    url TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS offline_forms (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    url TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS answer_keys (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    url TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS syllabus (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    url TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS sarkari_yojna (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    url TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS verification (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    url TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS upcoming (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    url TEXT NOT NULL
+);
+
+
